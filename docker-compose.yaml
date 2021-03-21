@@ -1,8 +1,8 @@
 version: '3'
 services:
-  web:
-    container_name: nogi-profile.web
-    image: nogi-profile
+  api:
+    container_name: nogi-profile.api
+    image: nogi-profile-api
     command: /bin/sh -c - "while :; do sleep 30; done"
     environment:
       MYSQL_HOST: mysql
