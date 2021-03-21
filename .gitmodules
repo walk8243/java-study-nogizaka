@@ -4,3 +4,6 @@
 [submodule "java-study-nogizaka-api"]
 	path = java-study-nogizaka-api
 	url = git@github.com:walk8243/java-study-nogizaka-api.git
+[submodule "java-study-nogizaka-web"]
+	path = java-study-nogizaka-web
+	url = git@github.com:walk8243/java-study-nogizaka-web.git
