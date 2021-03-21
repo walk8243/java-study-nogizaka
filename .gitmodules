@@ -1,0 +1,6 @@
+[submodule "java-nogi-profile"]
+	path = java-nogi-profile
+	url = git@github.com:walk8243/java-nogi-profile.git
+[submodule "java-study-nogizaka-api"]
+	path = java-study-nogizaka-api
+	url = git@github.com:walk8243/java-study-nogizaka-api.git
