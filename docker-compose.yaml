@@ -1,5 +1,18 @@
 version: '3'
 services:
+  web:
+    container_name: nogi-profile.web
+    image: nogi-profile-web
+    environment:
+      TZ: 'Asia/Tokyo'
+    links:
+      - api
+    depends_on:
+      - api
+    ports:
+      - "46467:8080"
+    volumes:
+      - ./docker/web/bin:/app/bin:ro
   api:
     container_name: nogi-profile.api
     image: nogi-profile-api
@@ -12,9 +25,9 @@ services:
     depends_on:
       - mysql
     ports:
-      - "49146:8080"
+      - "46468:8080"
     volumes:
-      - ./docker/web/bin:/app/bin:ro
+      - ./docker/api/bin:/app/bin:ro
   mysql:
     container_name: nogi-profile.mysql
     image: nogi-profile-mysql

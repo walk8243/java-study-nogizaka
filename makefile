@@ -1,30 +1,17 @@
-define APP_RUN
-	@docker exec -d nogi-profile.api /bin/sh -c - "java -jar nogi-profile.jar >/var/log/nogi-profile.log 2>&1"
-endef
-
-define MYSQL_LOGIN
-	@docker exec -it nogi-profile.mysql /bin/sh -c - "mysql -Dnogizaka -pvmu71FJ7Y6vB"
-endef
-
-.PHONY: up run gs logs down clean build
+.PHONY: up gs mysql down clean build
 
 up: build
 	docker-compose up --detach --force-recreate
-	@docker exec nogi-profile.api sleep 5
-	$(call APP_RUN)
-	@echo access to http://localhost:49146/
-
-run:
-	$(call APP_RUN)
+	make -C ./java-study-nogizaka-api run
+	make -C ./java-study-nogizaka-web run
+	@echo WEB access to http://localhost:46467/
+	@echo API access to http://localhost:46468/
 
 gs:
-	@docker exec nogi-profile.api /bin/bash bin/kill.sh
-
-logs:
-	@docker exec nogi-profile.api tail /var/log/nogi-profile.log -n 200 -f
+	make -C ./java-study-nogizaka-api gs
 
 mysql:
-	$(call MYSQL_LOGIN)
+	@docker exec -it nogi-profile.mysql /bin/sh -c - "mysql -Dnogizaka -pvmu71FJ7Y6vB"
 
 down:
 	docker-compose stop --timeout 1
@@ -35,4 +22,5 @@ clean:
 
 build:
 	make -C ./java-study-nogizaka-api build
+	make -C ./java-study-nogizaka-web build
 	docker build -t nogi-profile-mysql -f docker/mysql/Dockerfile .
