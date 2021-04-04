@@ -4,9 +4,22 @@ export const app = express();
 
 app.set('PORT', process.env['PORT'] || '3000');
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
 app
 	.get('/', (req, res, next) => {
-		res.send('nogi-profile-keystore');
+		const group = req.query['group'];
+		const key = req.query['key'];
+		if(group == 'nogi-profile') {
+			if(key == 'mysql') {
+				res.send(process.env['MYSQL_PASSWORD']);
+			}
+		}
+
+		if(!res.headersSent) {
+			res.send('nogi-profile-keystore');
+		}
 	});
 
 app

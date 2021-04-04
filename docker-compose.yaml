@@ -20,7 +20,10 @@ services:
     environment:
       MYSQL_HOST: mysql
       MYSQL_USERNAME: walk8243
-      MYSQL_PASSWORD: shLG425x
+      # MYSQL_PASSWORD: shLG425x
+      MYSQL_PASSWORD_KEYGORUP: nogi-profile
+      MYSQL_PASSWORD_KEYNAME: mysql
+      KEYSTORE_URL: http://key-store
       TZ: 'Asia/Tokyo'
     links:
       - mysql
@@ -58,4 +61,5 @@ services:
     restart: always
     environment:
       PORT: 80
+      MYSQL_PASSWORD: shLG425x
       TZ: 'Asia/Tokyo'
