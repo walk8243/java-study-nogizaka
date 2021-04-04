@@ -19,6 +19,8 @@ services:
     command: /bin/sh -c - "while :; do sleep 30; done"
     environment:
       MYSQL_HOST: mysql
+      MYSQL_USERNAME: walk8243
+      MYSQL_PASSWORD: shLG425x
       TZ: 'Asia/Tokyo'
     links:
       - mysql
