@@ -23,4 +23,5 @@ clean:
 build:
 	make -C ./java-study-nogizaka-api build
 	make -C ./java-study-nogizaka-web build
-	docker build -t nogi-profile-mysql -f docker/mysql/Dockerfile .
+	docker build -t nogi-profile-mysql -f ./docker/mysql/Dockerfile .
+	docker build -t nogi-profile-keystore ./key-store

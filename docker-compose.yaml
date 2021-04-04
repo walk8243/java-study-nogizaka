@@ -24,8 +24,10 @@ services:
       TZ: 'Asia/Tokyo'
     links:
       - mysql
+      - keystore:key-store
     depends_on:
       - mysql
+      - keystore
     ports:
       - "46468:8080"
     volumes:
@@ -50,3 +52,10 @@ services:
       - mysql
     volumes:
       - ./ddl:/tmp/ddl:ro
+  keystore:
+    container_name: nogi-profile.key-store
+    image: nogi-profile-keystore
+    restart: always
+    environment:
+      PORT: 80
+      TZ: 'Asia/Tokyo'
